@@ -1,0 +1,42 @@
+version: '3'
+services:
+  php: 
+    build: .
+    volumes: 
+      - './src:/var/www/html'
+    ports:
+      - 8080:80
+    depends_on:
+      mysql:
+        condition: service_healthy
+  
+  nginx:
+    image: nginx:latest
+    volumes: 
+      - './src:/var/www/html'
+      - './nginx/nginx.conf:/etc/nginx/nginx.conf'
+    ports:
+      - 8081:80
+    depends_on:
+      - php
+    environment:
+      - NGINX_PORT=80
+
+  mysql:
+    image: mysql
+    volumes:
+      - "./data:/var/lib/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mlinciko
+      - MYSQL_PASSWORD=mlinciko
+      - MYSQL_USER=root
+      - MYSQL_DATABASE=starscoffee
+    ports:
+      - 3307:3306
+    expose:
+      - 3307
+    healthcheck:
+      test: ['CMD', "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 1s
+      retries: 10
+

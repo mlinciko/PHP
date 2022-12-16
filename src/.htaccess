@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+</IfModule>
+
+Redirect /admin.php http://localhost:8080/authorization/index.php
