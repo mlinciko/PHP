@@ -1,7 +1,7 @@
 <?php
   session_start();
-  function query($login, $password, $type)
-{
+
+  function query($login, $password, $type) {
   $mysqli = new mysqli("mysql", "root", "mlinciko", "starscoffee");
   // //в базе данных ищем введенные данные
   switch($type)
@@ -25,9 +25,9 @@
     default:
       break;
   }
-
   return false;
 }
+
 function find($login){
   $mysqli = new mysqli("mysql", "root", "mlinciko", "starscoffee");
   $user = [];
@@ -47,6 +47,21 @@ function find($login){
   
 }
 
+function setRedisData($login) {
+  $_SESSION['login'] = $login;
+
+  $redis = new Redis();
+  $redis->connect('redis', 6379);
+  try {
+    $db = $redis->select(1);
+    if ($db) {
+      $redis->set('login', $login);
+    }
+  }catch (RedisException $ex) {
+    echo $ex.PHP_EOL;
+  }
+}
+
   $login = $_POST['login'];
   $password = $_POST['password'];
   
@@ -60,6 +75,8 @@ function find($login){
     $_SESSION['tel'] = $user[3];
     $_SESSION['email'] = $user[4];
     $_SESSION['user_id'] = $user[5];
+
+    setRedisData($login);
     header('Location: /authorization/view/view-private/index.php');
   }
   else{ 

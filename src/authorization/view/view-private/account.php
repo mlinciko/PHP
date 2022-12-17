@@ -19,7 +19,7 @@
       </span></div>
   </div>
   <button class="change">Изменить</button>
-  <form action="/authorization/controllers/data-query/change-data.php" method="post">
+  <form class="change-form" action="/authorization/controllers/data-query/change-data.php" method="post">
     <label for="name">ФИО</label>
     <input id="name" type="text" name="name" placeholder="Введите ФИО">
     <label for="tel">Телефон</label>

@@ -2,4 +2,10 @@
     RewriteEngine On
 </IfModule>
 
+php_value session.save_handler "redis"
+php_value session.save_path "tcp://redis:6379"
+php_value upload_max_filesize "20M"
+
+ErrorDocument 401 http://localhost:8080/authorization/index.php
+ErrorDocument 403 http://localhost:8080/authorization/index.php
 Redirect /admin.php http://localhost:8080/authorization/index.php

@@ -36,6 +36,9 @@ if (!empty($_GET['action'])) {
 </head>
 
 <body>
+<div style="width:150px; text-align:center; position: absolute; margin: 20px 0;">
+    <a style="color:#fff;" href="../index.php">На главную страницу</a>
+  </div>
 <div class="container">
   <?php
 
