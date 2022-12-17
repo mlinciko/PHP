@@ -25,24 +25,15 @@
             </div>
         </div>
     </div>
-    
-    <div class="container">
-        <div class="title">Продукция</div>
-        <div class="products-container">
-            <?php
-                $mysqli = new mysqli("mysql", "root", "mlinciko", "starscoffee");
-                $result = $mysqli->query("SELECT * FROM products");
-            ?>
-            <?php foreach ($result as $row) : ?>
-            <div class="products-item">
-                <img class="product-image" src="http://localhost:8081/images/<?= htmlspecialchars($row['image'])?>" alt="">
-                <div class="product-info">
-                    <div class="product-name"><?= htmlspecialchars($row['name'])?></div>
-                    <div class="product-price"><?= htmlspecialchars($row['price'])?> &#8381; </div>
-                </div>
-            </div>
-            <?php endforeach ?>
-        </div>
-    </div>
+    <?php
+        include("controllers/dataGenerator.php");
+        include("controllers/createCharts.php");
+        include("controllers/addWaterSign.php");
+
+        addWaterSign("chart1.png");
+        addWaterSign("chart2.png");
+        addWaterSign("chart3.png");
+        require("view/charts.php");
+    ?>
 </body>
 </html>
