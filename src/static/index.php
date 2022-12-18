@@ -12,16 +12,16 @@
     <div class="header-container">
         <div class="menu">
             <div class="menu-item">
-                <a href="./index.php">Главная</a>
+                <a href="../index.php">Главная</a>
             </div>
             <div class="menu-item">
                 <a href="http://localhost:8081/about.html">О нас</a>
             </div>
             <div class="menu-item">
-                <a href="./admin.php">Админка</a>
+                <a href="../admin.php">Админка</a>
             </div>
             <div class="menu-item">
-                <a href="./static/index.php">Статистика</a>
+                <a href="./index.php">Статистика</a>
             </div>
         </div>
     </div>
