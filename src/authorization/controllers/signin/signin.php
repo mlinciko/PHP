@@ -1,13 +1,17 @@
 <?php
   session_start();
+  include("../../models/data-query/findByLogin.php");
+  include("../../models/data-query/findByLoginAndPassword.php");
+  include("../../models/data-query/findUser.php");
 
   function query($login, $password, $type) {
-  $mysqli = new mysqli("mysql", "root", "mlinciko", "starscoffee");
+  // $mysqli = new mysqli("mysql", "root", "mlinciko", "starscoffee");
   // //в базе данных ищем введенные данные
   switch($type)
   {
     case 'findByLogin':
-      $result = $mysqli->query("SELECT * FROM `users` WHERE `email`='$login'");
+      //$result = $mysqli->query("SELECT * FROM `users` WHERE `email`='$login'");
+      $result = findByLogin($login);
       foreach($result as $row){
         if ($row['email'])
           return true;
@@ -15,7 +19,8 @@
       };
       break;
     case 'findByLoginAndPassword':
-      $result = $mysqli->query("SELECT * FROM `users` WHERE email='$login' AND `password`='$password'");
+      $result = findByLoginAndPassword($login, $password);
+      //$result = $mysqli->query("SELECT * FROM `users` WHERE email='$login' AND `password`='$password'");
       foreach($result as $row){
         if ($row['email'])
           return true;
@@ -28,24 +33,24 @@
   return false;
 }
 
-function find($login){
-  $mysqli = new mysqli("mysql", "root", "mlinciko", "starscoffee");
-  $user = [];
+// function find($login){
+//   $mysqli = new mysqli("mysql", "root", "mlinciko", "starscoffee");
+//   $user = [];
   
-  $result = $mysqli->query("SELECT * FROM `users` WHERE `email`='$login'");
-  foreach($result as $row) {
-    $user[0] = $row['email'];//login
-    $user[1] = $row['password'];//password
-    $user[2] = $row['name'];//name
-    $user[3] = $row['tel'];//telephone
-    $user[4] = $row['email'];//email
-    $user[5] = $row['user_id'];//user_id
+//   $result = $mysqli->query("SELECT * FROM `users` WHERE `email`='$login'");
+//   foreach($result as $row) {
+//     $user[0] = $row['email'];//login
+//     $user[1] = $row['password'];//password
+//     $user[2] = $row['name'];//name
+//     $user[3] = $row['tel'];//telephone
+//     $user[4] = $row['email'];//email
+//     $user[5] = $row['user_id'];//user_id
 
-    return $user;
-  }
-  return "";
+//     return $user;
+//   }
+//   return "";
   
-}
+// }
 
 function setRedisData($login) {
   $_SESSION['login'] = $login;
@@ -68,7 +73,7 @@ function setRedisData($login) {
   if(query($login, $password, "findByLoginAndPassword") && !empty($login) && !empty($password)){
     $_SESSION['id'] = random_int(100000, 999999);
     //ищем данные о пользователе в базе данных
-    $user = find($login);
+    $user = findUser($login);
     //записываем найденные данные в глобальную переменную
     $_SESSION['login'] = $user[0];
     $_SESSION['name'] = $user[2];

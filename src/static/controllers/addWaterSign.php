@@ -3,8 +3,8 @@ function addWaterSign($image) {
     header('content-type: image/png');
     $add = $image; // Source directory location
 
-    $add2="assets/$image"; // Destination directory location 
-    $water_img="assets/water-sign.png"; // Water Image file
+    $add2="assets/images/$image"; // Destination directory location 
+    $water_img="assets/images/water-sign.png"; // Water Image file
 
     $img_ar=GetImageSize($add); // reading source image size
     $img_wt_ar=GetImageSize($water_img); // reading water image size

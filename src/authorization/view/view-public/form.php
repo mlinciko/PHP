@@ -13,5 +13,5 @@
     ?>
   </div>
   <input type="submit" id="submit" value="Войти">
-  <div class="reg">Ещё нет аккаунта? <a href="/authorization/?action=reg">Зарегистрироваться</a></div>
+  <div class="reg">Ещё нет аккаунта? <a href="/authorization/index.php?action=reg">Зарегистрироваться</a></div>
 </form>

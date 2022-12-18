@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StarsCoffe</title>
-    <link rel="stylesheet" href="/css/null-style.css">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="assets/css/null-style.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
     <div class="header-container">
@@ -15,10 +15,10 @@
                 <a href="../index.php">Главная</a>
             </div>
             <div class="menu-item">
-                <a href="http://localhost:8081/about.html">О нас</a>
+                <a href="http://localhost:8081/about/about.html">О нас</a>
             </div>
             <div class="menu-item">
-                <a href="../admin.php">Админка</a>
+                <a href="../admin/admin.php">Админка</a>
             </div>
             <div class="menu-item">
                 <a href="./index.php">Статистика</a>

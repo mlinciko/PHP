@@ -8,4 +8,4 @@ php_value upload_max_filesize "20M"
 
 ErrorDocument 401 http://localhost:8080/authorization/index.php
 ErrorDocument 403 http://localhost:8080/authorization/index.php
-Redirect /admin.php http://localhost:8080/authorization/index.php
+Redirect /admin/admin.php http://localhost:8080/authorization/index.php
